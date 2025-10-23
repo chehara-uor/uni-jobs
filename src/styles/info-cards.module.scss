@@ -1,0 +1,21 @@
+.infoCard {
+  transform: translateY(0);
+  transition: transform 160ms ease;
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.iconWrap {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.01));
+}
+
+.icon {
+  width: 22px;
+  height: 22px;
+  transition: transform 160ms ease;
+}
+
+.infoCard:hover .icon {
+  transform: scale(1.05);
+}

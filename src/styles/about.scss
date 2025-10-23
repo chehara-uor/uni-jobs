@@ -1,0 +1,276 @@
+@use '@styles/variables/typography' as *;
+@use '@styles/variables/colors' as *;
+@use '@styles/mixins/mixins' as *;
+@use '@styles/mixins/support' as *;
+
+$radius-lg: 14px;
+$shadow: 0 32px 80px rgba(31, 41, 55, 0.08);
+$transition: all .25s ease;
+
+body {
+  font-family: $font-primary;
+  background: $clr-bg;
+}
+
+// .hero-banner {
+//   background: url('https://remotejobsinasia.com/wp-content/uploads/2024/10/banner-hero-all.webp') no-repeat center center;
+//   padding: 2.5rem 0;
+//   border-radius: 0;
+//   margin-bottom: 0;
+
+//   .page-title {
+//     font-size: 2.5rem;
+//     font-weight: 700;
+//     color: white;
+//     margin: 0;
+//   }
+
+//   .breadcrumb {
+//     display: flex;
+//     align-items: center;
+//     gap: 6px;
+//     font-size: 0.9rem;
+//     color: rgba(255, 255, 255, 0.85);
+
+//     .crumb {
+//       position: relative;
+//       &.active {
+//         font-weight: 600;
+//         &::after {
+//           content: '';
+//           display: block;
+//           width: -webkit-fill-available;
+//           height: 2px;
+//           background: white;
+//           margin-top: 0;
+//           border-radius: 1px;
+//         }
+//       }
+//     }
+
+//     .sep {
+//       margin: 0 4px;
+//     }
+//   }
+// }
+
+.intro {
+  font-size: 0.95rem;
+  color: $clr-text;
+  margin: 0;
+}
+
+.section-heading {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: $clr-text;
+}
+
+.section-text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: $clr-text;
+}
+
+.image-card {
+  border-radius: $radius-lg;
+  overflow: hidden;
+  position: relative;
+  background: white;
+  box-shadow: $shadow;
+
+  .image-wrapper {
+    position: relative;
+    img {
+      width: 100%;
+      display: block;
+      border-radius: $radius-lg;
+    }
+  }
+
+  &.large img {
+    border-radius: $radius-lg;
+  }
+
+  .overlay-badges {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    .badge {
+      background: $clr-white;
+      padding: 6px 10px;
+      border-radius: 8px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      box-shadow: 0 12px 36px rgba(31, 41, 55, 0.08);
+      position: relative;
+
+      &.salary {
+        &:before {
+          content: 'Salary';
+          position: absolute;
+          top: -10px;
+          left: 0;
+          background: $clr-accent;
+          color: white;
+          font-size: 9px;
+          padding: 2px 6px;
+          border-radius: 4px;
+          font-weight: 500;
+        }
+      }
+
+      &.verified {
+        background: rgba(16, 185, 129, 0.1);
+        color: #103f2c;
+        & .small {
+          margin-left: 4px;
+          font-size: 0.55rem;
+          font-weight: 400;
+        }
+      }
+
+      &.tag {
+        background: #f3f4f6;
+        color: $clr-text;
+      }
+    }
+  }
+}
+
+.feature-card {
+  background: $clr-white;
+  border-radius: $radius-lg;
+  padding: 1.6rem 1.25rem;
+  display: flex;
+  gap: 14px;
+  box-shadow: $shadow;
+  border: 1px solid rgba(31, 41, 55, 0.04);
+  align-items: center;
+
+  .icon-wrapper {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    background: rgba(247, 247, 250, 1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    svg {
+      color: $clr-accent;
+    }
+  }
+
+  .feature-content {
+    flex: 1;
+
+    .feature-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 0 0 6px;
+      color: $clr-text;
+    }
+    .feature-text {
+      margin: 0;
+      font-size: 14px;
+      color: $clr-muted;
+      line-height: 1.5;
+    }
+  }
+}
+
+.commitment-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    .dot {
+      font-size: 1.6rem;
+      line-height: 1;
+      color: $clr-accent;
+      margin-right: 4px;
+    }
+  }
+}
+
+.support-bar {
+  background: #0f101c;
+  color: white;
+  padding: 1.75rem 0;
+  margin-top: 2rem;
+
+  .support-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    justify-content: space-between;
+
+    .support-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .support-text {
+      margin: 4px 0 0;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .btn {
+      background: #ffffff;
+      color: #0f101c;
+      padding: 0.65rem 1rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+      transition: $transition;
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+  }
+}
+
+/* Responsive tweaks */
+@media (max-width: 1024px) {
+  .hero-banner {
+    .hero-content {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .breadcrumb {
+      margin-top: 8px;
+    }
+  }
+  .feature-card {
+    flex-direction: column;
+    .icon-wrapper {
+      margin-bottom: 6px;
+    }
+  }
+  .commitment-list {
+    li {
+      flex-direction: column;
+      .dot {
+        margin-bottom: 4px;
+      }
+    }
+  }
+}

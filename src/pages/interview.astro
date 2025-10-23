@@ -1,0 +1,123 @@
+---
+import "../styles/global.css";
+import Layout from '@layouts/Layout.astro';
+import HeroSection from '@components/HeroSection.astro';
+import "@styles/interview.scss";
+---
+
+<Layout> 
+    <HeroSection 
+        pageTitle="Next Steps"
+        crumb="Next Steps"
+    />
+    <section class="max-w-7xl mx-auto px-4 py-16">
+        <!-- <div class="header">
+            <img src="/wp-content/uploads/2024/10/Remote-jobs-logo-1.png" alt="Remote Jobs in Asia Logo" class="logo" />
+        </div> -->
+        
+        <div class="content">
+            <h1>Thank You for Your Application!</h1>
+            <p class="subtitle">Your CV has been successfully submitted.&nbsp;<strong id="resume-id"></strong> <br>Here's what happens next:</p>
+            
+            <div class="step-container">
+                <!-- <div class="step">
+                    <div class="step-number">1</div>
+                    <h2>Complete Your Initial Interview</h2>
+                    <p>Have a quick 20-minute screening interview with Lana, our AI recruiter. You can do this right now!</p>
+                    <ul>
+                        <li>No scheduling needed - interview anytime</li>
+                        <li>Basic questions about your experience and skills</li>
+                        <li>Chance to highlight your strengths</li>
+                        <li>Brief English communication assessment</li>
+                    </ul>
+                    <button id="make-a-call" class="call-button">
+                        <i class="fas fa-phone"></i> Start Interview Now
+                    </button>
+                </div> -->
+
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h2>Next step</h2>
+                    <p>Our team will carefully review your application and shortlist candidates who meet the requirements.</p>
+					<p>We will be in touch shortly regarding the next steps.</p> 
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h2>What to Prepare</h2>
+                    <p>To make the most of your interview:</p>
+                    <ul>
+                        <li>Find a quiet space with good internet connection</li>
+                        <li>Have your resume details handy</li>
+                        <li>Prepare to discuss your relevant experience</li>
+                        <li>Think about why you're interested in this role</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h2>Application Status Update</h2>
+                    <div class="status-timeline">
+                        <div class="timeline-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div class="timeline-content">
+                                <h4>Immediately After Interview</h4>
+                                <p>You'll receive an automated confirmation that your interview is complete.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <i class="fas fa-file-alt"></i>
+                            <div class="timeline-content">
+                                <h4>Application Review</h4>
+                                <p>The Levein Careers team will review your CV and interview results.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <i class="fas fa-envelope"></i>
+                            <div class="timeline-content">
+                                <h4>Status Update (3-5 Business Days)</h4>
+                                <p>You'll receive an email with one of these outcomes:</p>
+                                <ul class="status-list mt-4">
+                                    <li><span class="status-badge success">Shortlisted</span> Moving to next round</li>
+                                    <li><span class="status-badge pending">On Hold</span> Kept in talent pool</li>
+                                    <li><span class="status-badge declined">Not Selected</span> Application closed</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-wrapper grid grid-cols-2 gap-4">
+                <div class="faq-item">
+                    <h3>How long is the interview?</h3>
+                    <p>The interview typically takes 15-20 minutes.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>What if I have technical issues?</h3>
+                    <p>You can end the call and try again using the button above.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Can I reschedule?</h3>
+                    <p>No need to schedule - the interview is available 24/7. Just click the button when you're ready.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>When will I hear back about my application?</h3>
+                    <p>You'll receive an email update within 3-5 business days after completing your interview.</p>
+                </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <script  type="module">
+        let resumeID = sessionStorage.getItem("resumeID");
+        console.log(resumeID);
+
+        if (resumeID) {
+            document.getElementById("resume-id").innerText = resumeID;
+        }
+    </script>
+</Layout>

@@ -1,0 +1,96 @@
+---
+import "../styles/global.css";
+import "../styles/heroBanner.css";
+import "@styles/site.scss";
+import Layout from "@layouts/Layout.astro";
+import HeroSection from '@components/HeroSection.astro';
+
+export const prerender = false;
+interface APIData {
+  id: number;
+  title: string;
+  slug: string;
+  company: string;
+  image_url: string;
+  job_expires: string;
+  job_level: string[];
+  job_listing_type: string[];
+  job_experience: string[];
+}
+const requestUrl = new URL(Astro.request.url);
+const queryParam = requestUrl.searchParams.get('name');
+
+let jobs: APIData[] = [];
+if (queryParam) {
+  const apiUrl = `https://unijobs.my.id/wp-json/remoteasia/v2/jobs?industry=${encodeURIComponent(
+    queryParam
+  )}&_fields=title,slug,job_experience,job_listing_type,job_level,image_url,job_expires`;
+
+  try {
+    const response = await fetch(apiUrl);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    jobs = await response.json();
+  } catch (error) {
+    console.error('Failed to fetch jobs:', error);
+    jobs = [];
+  }
+}
+
+---
+
+<Layout>
+    <HeroSection
+      pageTitle="Category"
+      crumb={`Category = ${queryParam ?? ''}`}
+    />
+    <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4">
+        <h2 class="section-title">Results for: {queryParam ?? ''}</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+
+        <!-- Job Card -->
+         {jobs.map(j => (
+        <a href={`/job/${j.slug}`} 
+            class="block bg-white rounded-xl shadow-md hover:shadow-lg transition p-6 border border-gray-100">
+            
+            <div class="flex items-center gap-4">
+            <img src={j.image_url} 
+                alt={`${j.title} Logo`} 
+                class="w-18 h-18 p-1 rounded-md object-contain border border-gray-200" />
+            <div>
+                <h3 class="text-lg font-semibold text-gray-800">{j.title}</h3>
+                <p class="text-sm text-gray-500">{j?.job_listing_type[0]} - {j?.job_experience}</p>
+            </div>
+            </div>
+
+            <div class="mt-4 flex flex-wrap gap-2">
+            <span class="px-3 py-1 text-xs font-medium bg-[#e81b390d] text-[#0078c1] rounded-full">
+               {j?.job_experience?.[0]}
+            </span>
+            <span class="px-3 py-1 text-xs font-medium bg-[#514e8529] text-[#514e85] rounded-full">
+                {j?.job_level} 
+            </span>
+            <span class="px-3 py-1 text-xs font-medium bg-green-50 text-green-700 rounded-full">
+                {j?.job_listing_type[0]} 
+            </span>
+            </div>
+
+            <div class="mt-6 flex items-center justify-between text-sm text-gray-500">
+            <span>Expires: <span class="font-medium text-gray-700">{j.job_expires}</span></span>
+            <span class="inline-flex items-center text-[#e81b39] font-medium">
+                View →
+            </span>
+            </div>
+        </a>
+ 
+
+         ))}
+
+        </div>
+    </div>
+    </section>
+
+
+</Layout>

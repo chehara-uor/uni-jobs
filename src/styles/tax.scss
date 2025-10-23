@@ -1,0 +1,142 @@
+@use '@styles/variables/typography' as *;
+@use '@styles/variables/colors' as *;
+@use '@styles/mixins/mixins' as *;
+@use '@styles/mixins/support' as *;
+
+$shadow-lg: 0 10px 40px rgba(31, 41, 55, 0.06);
+$radius: 10px;
+
+.tax-page {
+  color: $clr-text;
+
+  .hero {
+    .hero-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .hero-subtitle {
+      font-size: 1rem;
+      color: $clr-muted;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .btn-primary {
+      background: $clr-accent;
+      color: #fff;
+      padding: 0.75rem 1.5rem;
+      border-radius: $radius;
+      font-weight: 600;
+      transition: background 0.2s;
+      &:hover {
+        background: rgba(0, 119, 193, 0.897);
+        border-color: rgba(0, 119, 193, 0.897);
+      }
+    }
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .divider-line {
+      flex: 1;
+      height: 1px;
+      background: #e5e7eb;
+    }
+    .divider-icon {
+      margin: 0 12px;
+      font-size: 1.2rem;
+      color: $clr-accent;
+    }
+  }
+
+  .section-heading {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .rules-section, .calc-section, .expenses-section, .help-section, .get-started {
+    .container {
+      max-width: 1100px;
+    }
+    img {
+      border-radius: $radius;
+      box-shadow: $shadow-lg;
+    }
+    p, li {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+  }
+
+  .tax-breakdown {
+    margin-top: 1rem;
+    h3 {
+      margin-bottom: 0.75rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      th, td {
+        padding: 0.75rem 0.5rem;
+      }
+      thead {
+        border-bottom: 2px solid #e5e7eb;
+      }
+      tbody tr:not(:last-child) {
+        border-bottom: 1px solid #e5e7eb;
+      }
+      .text-right {
+        text-align: right;
+      }
+    }
+  }
+
+  .features-list {
+    li {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  .help-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: $radius;
+    box-shadow: $shadow-lg;
+    text-align: center;
+    .help-icon {
+      font-size: 2rem;
+      color: $clr-accent;
+      margin-bottom: 0.5rem;
+    }
+    .help-text {
+      font-size: 0.95rem;
+      color: $clr-muted;
+    }
+  }
+
+  .get-started {
+    max-width: 760px;
+    margin: 0 auto;
+    border-radius: 8px;
+    ol {
+      margin-bottom: 1.5rem;
+      li {
+        margin-bottom: 0.75rem;
+      }
+    }
+    .text-small {
+      font-size: 0.875rem;
+      color: $clr-muted;
+    }
+  }
+}

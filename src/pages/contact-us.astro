@@ -1,0 +1,47 @@
+---
+import "../styles/global.css";
+import "@styles/contact.scss";
+import Layout from "@layouts/Layout.astro";
+import HeroSection from '@components/HeroSection.astro';
+---
+<Layout>
+    <!-- Hero / Breadcrumb -->
+    <HeroSection
+      pageTitle="Contact Us"
+      crumb="Contact Us"
+    />
+
+    <!-- Map Embed -->
+    <section class="contact-map pt-16">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="map-wrapper">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.14186323993!2d79.88515657581775!3d6.873600418994267!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae25b56027eb367%3A0x92917ef14c01ef9e!2sLevein%20Group!5e0!3m2!1sen!2slk!4v1754376355541!5m2!1sen!2slk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- Info Section -->
+    <section class="contact-info py-16">
+      <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <div class="image-wrapper">
+          <img
+            src="https://remotejobsinasia.com/wp-content/uploads/2025/05/mid-shot-woman-talking-phone-table-1024x683.webp"
+            alt="Office at Levein Group"
+            class="info-image"
+          />
+        </div>
+        <div class="info-card">
+          <h2 class="info-title">Uni Today</h2>
+          <p class="info-text">
+            At Uni Today, we’re driving digital innovation across the UK’s most dynamic sectors — from healthcare and fintech to hospitality and tech startups, all from our vibrant hub in Colombo, Sri Lanka.
+          </p>
+          <p class="info-text">
+            Join our passionate team of technologists where your creativity and skills can transform multiple industries. We offer more than just a job — we provide an environment where innovation meets purpose, where your growth matters, and where your solutions impact leading UK businesses.
+          </p>
+          <p class="info-text call-to-action">
+            <strong>Do you need more uni updates?</strong> Explore more at <a href="https://www.unitoday.com/" target="_blank" rel="noopener">www.unitoday.com/careers</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+</Layout>

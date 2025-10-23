@@ -1,0 +1,279 @@
+---
+import "../styles/global.css";
+import "@styles/faq.scss";
+import Layout from "@layouts/Layout.astro";
+import HeroSection from '@components/HeroSection.astro';
+
+
+const faqsGeneral  = [
+  {
+    question: "What is unitoday.lk?",
+    answer:
+      "A: unitoday.lk is a specialized job platform connecting eligible individuals in Sri Lanka with remote job opportunities in UK and European tech companies, particularly innovative startups and AI companies.",
+  },
+  {
+    question: "Is unitoday.lk only for IT professionals?",
+    answer:
+      "A: While we have many opportunities in the tech sector, we also cater to various other professions including finance, marketing, HR, design, and administrative roles.",
+  },
+  {
+    question: "Do I need to pay to use unitoday.lk?",
+    answer:
+      "A: No, our platform is completely free for job seekers. We make our revenue through our partnerships with employers.",
+  },
+  {
+    question: "What means “Print special chars as HTML entities”?",
+    answer:
+      "Designer at work who don't have any content for their product yet have the possibility to insert a dummy text into their design to judge on the arrangement of text on their site, on readability or on fonts and sizes. A dummy text is also helpful to present a design without content to a client to show how the text is going to look like without irritating the client by real texts.",
+  },
+];
+
+const faqEligibility = [
+    {
+        question: "Who can apply for jobs on unitoday.lk?",
+        answer:
+        "A: Our jobs are open to individuals who are either residents of Sri Lanka or have the right to work in Sri Lanka. This includes Sri Lankan citizens, permanent residents, and those with valid work visas",
+    },
+    {
+        question: "I'm not a Sri Lankan citizen. Can I use your platform?",
+        answer:
+        "A: Yes, as long as you have the legal right to work in Sri Lanka, you are eligible to apply for jobs on our platform, regardless of your citizenship",
+    },
+    {
+        question: "Do I need to be in a specific city in Sri Lanka to apply?",
+        answer:
+        "A: No, you can be located anywhere in Sri Lanka. As long as you have a reliable internet connection for remote work and meet the eligibility criteria, you can apply.",
+    },
+    {
+        question: "What kind of experience do I need to apply for jobs on your platform?",
+        answer:
+        "A: The experience requirements vary by position. We have opportunities for fresh graduates as well as seasoned professionals.",
+    },
+    {
+        question: "Do I need to know a European language to apply for these internship jobs?",
+        answer:
+        "A: Most of our job listings require fluency in English. Some positions might require knowledge of other European languages, but this will be clearly stated in the job description.",
+    }
+];
+
+const faqProcess = [
+    {
+        question: "How do I start my job search on unitoday.lk?",
+        answer:
+        "A: Simply browse our job listings without signing up. When you find a job you'd like to apply for, you'll be prompted to create an account and complete your profile.",
+    },
+    {
+        question: "Can I set up job alerts?",
+        answer:
+        "A: Yes, once you've created an account, you can set up custom job alerts based on your preferences and skills.",
+    },
+    {
+        question: "How often are new jobs posted?",
+        answer:
+        "A: We update our job listings daily. The frequency of new postings depends on our partner companies' hiring needs.",
+    }
+];
+
+const faqApplication = [
+    {
+        question: "How do I apply for a job through unitoday.lk?",
+        answer:
+        "A: Once you've found a job you're interested in, click the “Apply” button on the job listing. You'll be guided through the application process, which typically involves submitting your resume and answering any specific questions the employer has set.",
+    },
+    {
+        question: "Can I apply for multiple jobs?",
+        answer:
+        "A: Yes, you can apply for as many jobs as you're interested in and qualified for.",
+    },
+    {
+        question: "How can I track my applications?",
+        answer:
+        "A: You can track all your applications through your user dashboard once you've created an account.",
+    }
+];
+
+const faqRemote  = [
+    {
+        question: "Are these jobs truly remote, or will I need to relocate in the future?",
+        answer:
+        "A: The jobs on our platform are designed to be fully remote from Sri Lanka. However, some companies might require occasional travel for team meetings or events. Any such requirements will be clearly stated in the job description.",
+    },
+    {
+        question: "How are salary and benefits handled for remote workers in Sri Lanka?",
+        answer:
+        "A: Salary and benefits vary by employer. Most companies offer competitive packages based on Sri Lankan market rates while considering the cost of living difference. Specific details will be discussed during the interview process.",
+    },
+    {
+        question: "Will I be an employee or a contractor?",
+        answer:
+        "A: This depends on the employer and the specific role. Some companies hire remote workers as full-time employees, while others may offer contractor positions. This information is typically included in the job descriptio",
+    }
+];
+
+const faqSupport  = [
+    {
+        question: "Does unitoday.lk offer any support for interview preparation?",
+        answer:
+        "A: Yes, we provide various resources including interview guides, mock interview sessions, and tips on navigating cultural differences when interviewing with European companies.",
+    },
+    {
+        question: "What if I face issues with an employer I connected with through your platform?",
+        answer:
+        "A: While we carefully vet our partner companies, if you face any issues, please contact our support team. We're here to mediate and ensure a positive experience for both parties.",
+    },
+    {
+        question: "Do you offer any skill development resources?",
+        answer:
+        "A: Yes, we provide webinars, discounted courses, and regular updates on in-demand skills in the European tech market to help you stay competitive. If you have any questions not addressed here, please don't hesitate to contact our support team. We're here to help you succeed in your remote job search from Sri Lanka!",
+    }
+];
+
+
+const AllFaqs = [
+  {
+    title: "General Questions",
+    faqs: faqsGeneral,
+  },
+  {
+    title: "Eligibility and Requirements",
+    faqs: faqEligibility,
+  },
+  // {
+  //   title: "Job Search Process",
+  //   faqs: faqProcess,
+  // },
+  {
+    title: "Application Process",
+    faqs: faqApplication,
+  },
+  // {
+  //   title: "Remote Work and Employment",
+  //   faqs: faqRemote,
+  // },
+  {
+    title: "Support and Resources",
+    faqs: faqSupport,
+  }
+];
+---
+<Layout> 
+<HeroSection
+  pageTitle="Frequently Asked Questions"
+  crumb="FAQs"
+/>
+<section class="faq-section py-16">
+  <div class="max-w-7xl mx-auto px-4">
+    <p class="intro">
+      Welcome to unitoday.lk's FAQ page. Here, we answer common questions about our platform and how we help eligible individuals in Sri Lanka find remote jobs with UK and European tech companies.
+    </p>
+    {AllFaqs.map((all, index) => (
+    <div id={`faq-${index}`}>
+        <h2 class="heading">{all.title}</h2>
+        <div class="accordion">
+        {all.faqs.map((f, idx) => (
+            <div class="item">
+            <button
+                type="button"
+                class="question"
+                aria-expanded={idx === 0 ? "true" : "false"}
+                aria-controls={`answer-${index}-${idx}`}
+                id={`question-${index}-${idx}`}
+            >
+                <span class="q-text">{f.question}</span>
+                <span class="icon" aria-hidden="true">
+              
+                <svg
+                    class="plus"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                    d="M8 3.33334V12.6667M3.33333 8H12.6667"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    />
+                </svg>
+          
+                <svg
+                    class="minus"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                    d="M3.33333 8H12.6667"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    />
+                </svg>
+                </span>
+            </button>
+            <div
+                class={`answer-wrapper ${idx === 0 ? "expanded" : ""}`}
+                id={`answer-${index}-${idx}`}
+                role="region"
+                aria-labelledby={`question-${index}-${idx}`}
+            >
+                <p class="answer-text">{f.answer}</p>
+            </div>
+            </div>
+        ))}
+        </div>
+    </div>
+    ))}
+  </div>
+
+  <script type="module">
+    (function () {
+      const accordions = document.querySelectorAll('[id^="faq-"]');
+      
+      accordions.forEach((accordion) => {
+        const answerWrappers = accordion.querySelectorAll(".answer-wrapper");
+        answerWrappers.forEach((wrapper) => {
+          if (wrapper.classList.contains("expanded")) {
+            wrapper.style.maxHeight = wrapper.scrollHeight + "px";
+          }
+        });
+
+        // Add click event listener to each accordion
+        accordion.addEventListener("click", (e) => {
+          const btn = e.target.closest(".question");
+          if (!btn) return;
+          
+          const isExpanded = btn.getAttribute("aria-expanded") === "true";
+          
+          // Collapse all items in this accordion
+          accordion.querySelectorAll(".question").forEach((q) => {
+            q.setAttribute("aria-expanded", "false");
+          });
+          accordion.querySelectorAll(".answer-wrapper").forEach((a) => {
+            a.classList.remove("expanded");
+            a.style.maxHeight = null;
+          });
+
+          // If the clicked item wasn't expanded, expand it
+          if (!isExpanded) {
+            btn.setAttribute("aria-expanded", "true");
+            const panelId = btn.getAttribute("aria-controls");
+            const panel = document.getElementById(panelId);
+            if (panel) {
+              panel.classList.add("expanded");
+              panel.style.maxHeight = panel.scrollHeight + "px";
+            }
+          }
+        });
+      });
+    })();
+  </script>
+</section>
+
+</Layout>

@@ -1,0 +1,21 @@
+---
+export interface Props {
+  pageTitle: string;
+  crumb: string;
+}
+const { pageTitle, crumb }: Props = Astro.props;
+---
+<section class="hero-banner mt-[80px]">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="hero-content flex flex-col md:flex-row items-center justify-between gap-6">
+          <div class="hero-title-wrapper">
+            <h1 class="page-title">{pageTitle}</h1>
+          </div>
+          <div class="breadcrumb">
+            <span class="crumb">Home</span>
+            <span class="sep">-</span>
+            <span class="crumb active">{crumb}</span>
+          </div>
+        </div>
+      </div>
+</section>

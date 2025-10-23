@@ -1,0 +1,135 @@
+---
+export const prerender = true;
+import Layout from "@layouts/Layout.astro";
+import "@styles/site.scss";
+import JobSearchWrapper from "@components/JobSearchWrapper";
+import type { Categories } from "@lib/types";
+import { fetchCategories } from "@lib/wp";
+import { getCategoryImage } from "../utils/categories";
+import DataSet from "../data/jobs.json";
+
+// const rows = await fetchJobs(1, 12);
+const categories = await fetchCategories();
+
+// const DataSet: JobData[] = rows.map((row: any) => ({
+//   id: row.id ?? 0,
+//   title:
+//     typeof row.title === "string" ? row.title : (row.title?.rendered ?? ""),
+//   slug: row.slug ?? "",
+//   company: row.company ?? row.meta?.company ?? "Uni Today",
+//   image_url: row.image_url,
+//   date: row.job_expires ?? "",
+//   level: row.job_level ?? row.meta?.job_level ?? "",
+//   type: row.job_listing_type ?? row.meta?.job_listing_type ?? "",
+//   experience: row.job_experience ?? row.meta?.job_experience ?? "",
+// }));
+
+const CatLogs: Categories[] = categories.map((cat) => ({
+  id: cat.id,
+  name: cat.name,
+  count: cat.count,
+  slug: cat.slug,
+  svg: getCategoryImage(cat.slug),
+}));
+
+---
+
+<Layout>
+  <div id="preloader">
+    <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+  </div>
+  <!-- Hero Section -->
+  <JobSearchWrapper initialData={DataSet} client:only="react" />
+  <!-- Top Recent Jobs -->
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="section-title">Recent Jobs</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {
+          DataSet.slice(1, 4).map((job) => (
+            <div id={`job-${job.id}`} class="job-card">
+              <h3 class="job-title">{job.title}</h3>
+              <p class="job-company">{job.company}</p>
+              <div class="mt-1 flex flex-wrap gap-2">
+              <span class="px-3 py-1 text-xs font-medium bg-[#e81b390d] text-[#0078c1] rounded-full">
+               {job.level}
+              </span>
+              <span class="px-3 py-1 text-xs font-medium bg-[#514e8529] text-[#514e85] rounded-full">
+                {job.type}
+              </span>
+              </div>
+              <a
+                href={`/job/${job.slug}`}
+                class="btn btn-primary mt-4 apply-now"
+              >
+                Apply Now
+              </a>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular Categories -->
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      <h2 class="section-title">Popular Categories</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8">
+        {
+          CatLogs.slice(0, 4).map((cat) => (
+            <a href={`/category/?name=${cat.slug}`} class="category-card">
+              <div class="category-image-wrapper">
+                <Fragment set:html={cat.svg} />
+              </div>
+              <h3 class="category-name">{cat.name}</h3>
+              <p class="category-count">{cat.count} open positions</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+    <div
+      class="flex flex-col sm:flex-row gap-4 justify-center lg:mt-12 mt-4 px-4"
+    >
+      <a href="/browse-job-categories" class="btn button-plain"
+        >Browse All Categories</a
+      >
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="py-16" id="how-it-works">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      <h2 class="section-title">How It Works</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+        <div class="hiw-step">
+          <div class="hiw-icon">1</div>
+          <h3>Browse Job Listings</h3>
+          <p>
+            Explore hundreds of verified internship opportunities from top companies across Sri Lanka
+          </p>
+        </div>
+        <div class="hiw-step">
+          <div class="hiw-icon">2</div>
+          <h3>Find a Job You Like</h3>
+          <p>
+            Filter by field, location, or stipend to discover internships that match your passion
+          </p>
+        </div>
+        <div class="hiw-step">
+          <div class="hiw-icon">3</div>
+          <h3>Complete Profile & Apply for job</h3>
+          <p>
+            Build your student profile, upload your resume, and apply instantly with one simple click
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script type="module">
+	setTimeout(function() {
+		document.getElementById("preloader").style.display = "none";
+	}, 1000);
+	</script>
+</Layout>

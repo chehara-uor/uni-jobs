@@ -1,0 +1,244 @@
+:root {
+  /* base */
+  --cs-bg: #ffffff;
+  --cs-card-border: #e5e7eb;
+  --cs-text: #0b0b0f;
+  --cs-muted: #6b7280;
+  --cs-footer-border: #e5e7eb;
+
+  /* accents */
+  --cs-accent-1: #6366f1;
+  --cs-accent-2: #d946ef;
+  --cs-accent-3: #10b981;
+
+  /* elements */
+  --cs-btn-bg: #f8fafc;
+  --cs-btn-text: #374151;
+  --cs-btn-border: #d1d5db;
+
+  --cs-code-bg: #f3f4f6;
+  --cs-code-text: #111827;
+
+  /* status colors */
+  --st-applied-bg: #eff6ff;
+  --st-applied-fg: #1d4ed8;
+  --st-applied-dot: #3b82f6;
+  --st-interviewing-bg: #fffbeb;
+  --st-interviewing-fg: #b45309;
+  --st-interviewing-dot: #f59e0b;
+  --st-pending_review-bg: #f5f3ff;
+  --st-pending_review-fg: #6d28d9;
+  --st-pending_review-dot: #8b5cf6;
+  --st-shortlisted-bg: #ecfdf5;
+  --st-shortlisted-fg: #065f46;
+  --st-shortlisted-dot: #10b981;
+  --st-rejected-bg: #fef2f2;
+  --st-rejected-fg: #991b1b;
+  --st-rejected-dot: #ef4444;
+  --st-default-bg: #f4f4f5;
+  --st-default-fg: #3f3f46;
+  --st-default-dot: #71717a;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --cs-bg: #0b0b0f;
+    --cs-card-border: #262626;
+    --cs-text: #f5f5f6;
+    --cs-muted: #a1a1aa;
+    --cs-footer-border: #262626;
+
+    --cs-btn-bg: #0f172a;
+    --cs-btn-text: #e5e7eb;
+    --cs-btn-border: #334155;
+
+    --cs-code-bg: #0f172a;
+    --cs-code-text: #f3f4f6;
+
+    /* keep same hues, darker bases */
+    --st-applied-bg: #0b1220;
+    --st-applied-fg: #93c5fd;
+    --st-applied-dot: #60a5fa;
+    --st-interviewing-bg: #1a1405;
+    --st-interviewing-fg: #fcd34d;
+    --st-interviewing-dot: #f59e0b;
+    --st-pending_review-bg: #140b23;
+    --st-pending_review-fg: #c4b5fd;
+    --st-pending_review-dot: #8b5cf6;
+    --st-shortlisted-bg: #041a14;
+    --st-shortlisted-fg: #a7f3d0;
+    --st-shortlisted-dot: #10b981;
+    --st-rejected-bg: #220b0b;
+    --st-rejected-fg: #fecaca;
+    --st-rejected-dot: #ef4444;
+    --st-default-bg: #18181b;
+    --st-default-fg: #e4e4e7;
+    --st-default-dot: #a1a1aa;
+  }
+}
+#status {
+  height: 75vh;
+  position: relative;
+  overflow: hidden;
+  /* background: linear-gradient(90deg, var(--cs-accent-1), var(--cs-accent-2), var(--cs-accent-3)); */
+}
+#status::before,
+#status::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  width: 400px;
+  height: 400px;
+  border-radius: 9999px;
+  filter: blur(60px);
+  opacity: 0.25;
+}
+
+#status::before {
+  left: -120px;
+  top: 10%;
+  background: linear-gradient(
+    90deg,
+    var(--cs-accent-1),
+    var(--cs-accent-2),
+    var(--cs-accent-3)
+  );
+}
+
+#status::after {
+  right: -120px;
+  bottom: 8%;
+  background: radial-gradient(closest-side, #e81b39, transparent);
+}
+
+/* card shell */
+.cs-card {
+  background: var(--cs-bg);
+  border: 1px solid var(--cs-card-border);
+}
+
+/* thin gradient bar */
+.cs-accent {
+  height: 4px;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--cs-accent-1),
+    var(--cs-accent-2),
+    var(--cs-accent-3)
+  );
+}
+
+/* text colors */
+.cs-title {
+  color: var(--cs-text);
+}
+.cs-subtle,
+.cs-muted {
+  color: var(--cs-muted);
+}
+.cs-white {
+  color: var(--st-default-fg);
+}
+/* inner info blocks */
+.cs-block {
+  border: 1px solid var(--cs-card-border);
+}
+
+/* code chip */
+.cs-code {
+  background: var(--cs-code-bg);
+  color: var(--cs-code-text);
+  border-radius: 0.375rem;
+}
+
+/* button */
+.cs-btn {
+  background: var(--cs-btn-bg);
+  color: var(--cs-btn-text);
+  border: 1px solid var(--cs-btn-border);
+  border-radius: 0.375rem;
+}
+.cs-btn:focus-visible {
+  outline: 2px solid var(--cs-accent-1);
+  outline-offset: 2px;
+}
+
+/* status badge and variants */
+.cs-badge {
+  border-radius: 9999px;
+}
+.cs-badge .cs-dot {
+  display: inline-block;
+}
+
+.cs-badge.is-applied {
+  background: var(--st-applied-bg);
+  color: var(--st-applied-fg);
+}
+.cs-badge.is-applied .cs-dot {
+  background: var(--st-applied-dot);
+}
+
+.cs-badge.is-interviewing {
+  background: var(--st-interviewing-bg);
+  color: var(--st-interviewing-fg);
+}
+.cs-badge.is-interviewing .cs-dot {
+  background: var(--st-interviewing-dot);
+}
+
+.cs-badge.is-pending_review {
+  background: var(--st-pending_review-bg);
+  color: var(--st-pending_review-fg);
+}
+.cs-badge.is-pending_review .cs-dot {
+  background: var(--st-pending_review-dot);
+}
+
+.cs-badge.is-shortlisted {
+  background: var(--st-shortlisted-bg);
+  color: var(--st-shortlisted-fg);
+}
+.cs-badge.is-shortlisted .cs-dot {
+  background: var(--st-shortlisted-dot);
+}
+
+.cs-badge.is-rejected {
+  background: var(--st-rejected-bg);
+  color: var(--st-rejected-fg);
+}
+.cs-badge.is-rejected .cs-dot {
+  background: var(--st-rejected-dot);
+}
+
+.cs-badge.is-default {
+  background: var(--st-default-bg);
+  color: var(--st-default-fg);
+}
+.cs-badge.is-default .cs-dot {
+  background: var(--st-default-dot);
+}
+
+/* footer */
+.cs-footer {
+  border-top: 1px solid var(--cs-footer-border);
+}
+
+/* socials */
+.cs-social a {
+  color: var(--cs-muted);
+  border-radius: 9999px;
+}
+.cs-social a:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+@media (prefers-color-scheme: dark) {
+  .cs-social a:hover {
+    background: rgba(255, 255, 255, 0.06);
+  }
+}
+.is-disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

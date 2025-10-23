@@ -1,0 +1,109 @@
+---
+
+---
+
+<section class="coming-soon min-h-screen flex flex-col justify-center items-center text-center px-6">
+  <div class="content max-w-2xl">
+    <!-- Logo -->
+    <h1 class="text-5xl md:text-6xl font-bold text-[#0C1715] mb-4">
+      Uni<span class="text-[#0078c1]">Jobs</span>
+    </h1>
+    <p class="text-[#0C1715]/70 text-lg mb-10 animate-fade">
+      We’re building something exciting for Sri Lankan university students.
+      <br />Stay tuned 😊 launching soon!
+    </p>
+
+    <!-- Email Contact -->
+    <a
+      href="mailto:hello@unijobs.lk"
+      class="inline-block bg-[#0078c1] hover:bg-[#0077c1f1] text-white drop-a-mail px-6 py-3 rounded-full mb-10 transition"
+    >
+      Contact us at hello@unijobs.lk
+    </a>
+
+    <!-- Socials -->
+    <div class="flex justify-center gap-6 mt-6">
+      <a
+        href="https://www.facebook.com/unitoday.lk?r"
+        aria-label="Facebook"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="social-icon hover:scale-110 transition-transform"
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3.5l.5-4H14V7a1 1 0 0 1 1-1h3z" />
+            </svg>
+      </a>
+      <a
+        href="https://www.instagram.com/unitoday.lk"
+        aria-label="Instagram"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="social-icon hover:scale-110 transition-transform"
+      >
+       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+              <circle cx="12" cy="12" r="5" />
+              <circle cx="17.5" cy="6.5" r="1.5" />
+        </svg>
+      </a>
+        <a
+            href="https://www.linkedin.com/company/unitoday/"
+            aria-label="LinkedIn"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-icon hover:scale-110 transition-transform"
+            >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" />
+              <rect x="2" y="9" width="4" height="12" rx="2" ry="2" />
+              <circle cx="4" cy="4" r="2" />
+            </svg>
+        </a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="absolute bottom-6 text-[#0C1715]/50 text-sm">
+    © {new Date().getFullYear()} UniTutor — powered by UNItoday
+  </footer>
+</section>
+
+<style is:global>
+    .site-footer, .web-header{
+    display: none;
+    }
+  .coming-soon {
+    background: linear-gradient(135deg, #e8f6ef 0%, #f9fffc 100%);
+  }
+  .drop-a-mail:hover {
+    color: #e8f6ef;
+  }
+
+
+  .social-icon svg {
+    color: #0c1715;
+  }
+
+  .social-icon:hover svg {
+    color: #0078c1;
+  }
+
+  @keyframes fade {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade {
+    animation: fade 0.8s ease-out;
+  }
+</style>

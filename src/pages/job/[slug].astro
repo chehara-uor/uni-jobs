@@ -1,0 +1,176 @@
+---
+import "../../styles/global.css";
+import "@styles/job.scss";
+import Layout from "@layouts/JobLayout.astro";
+import type { JobData } from "@lib/types";
+import { fetchJobsPages } from "@lib/wp";
+import insideBanner from '@assets/inside-banner.webp'
+
+// export async function getStaticPaths() {
+//   // Fetch all posts to generate static paths
+//   const url = `https://remotejobsinasia.com/wp-json/wp/v2/posts?per_page=100`;
+
+//   try {
+//     const response = await fetch(url);
+//     if (!response.ok) {
+//       throw new Error(`HTTP error! status: ${response.status}`);
+//     }
+//     const posts: Post[] = await response.json();
+
+//     return posts.map((post) => ({
+//       params: { slug: post.slug },
+//       props: { post },
+//     }));
+//   } catch (error) {
+//     console.error("Failed to fetch posts:", error);
+//     return [];
+//   }
+// }
+export async function getStaticPaths() {
+  try {
+    const posts = await fetchJobsPages(100);
+    return posts.map((post) => ({
+      params: { slug: post.slug },
+      props: { post },
+    }));
+  } catch (e) {
+    console.error(e);
+    return [];
+  }
+}
+
+// Access the slug and post data
+const { slug } = Astro.params;
+const { post }: { post: JobData } = Astro.props;
+
+// If no post is found, return 404
+if (!post) {
+  return new Response(null, {
+    status: 404,
+    statusText: 'Not found'
+  });
+}
+
+const recentJobs = [
+  { title: "Accountant", timeAgo: "4 weeks ago" },
+  { title: "Senior Bookkeeper", timeAgo: "3 weeks ago" },
+  { title: "Finance Manager", timeAgo: "2 weeks ago" },
+];
+---
+
+<Layout title={post.title} description={`Apply for ${post.title} at ${post.company}`}>
+ <article class="job-page mt-[80px]">
+    <!-- Hero -->
+    <section
+      class="job-hero"
+      style={`background-image: linear-gradient(45deg, #0078c1c7, #10195dd1), url('${insideBanner.src}')`}
+    >
+      <div class="container">
+        <h1 class="job-title">{post.title}</h1>
+        <div class="job-meta">
+          <span class="pill">{post.job_listing_type}</span>
+          <span class="meta-item flex items-center gap-2"><svg aria-hidden="true" width="25px" height="25px" fill="#fff" class="e-font-icon-svg e-fas-map-marked-alt" viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg"><path d="M288 0c-69.59 0-126 56.41-126 126 0 56.26 82.35 158.8 113.9 196.02 6.39 7.54 17.82 7.54 24.2 0C331.65 284.8 414 182.26 414 126 414 56.41 357.59 0 288 0zm0 168c-23.2 0-42-18.8-42-42s18.8-42 42-42 42 18.8 42 42-18.8 42-42 42zM20.12 215.95A32.006 32.006 0 0 0 0 245.66v250.32c0 11.32 11.43 19.06 21.94 14.86L160 448V214.92c-8.84-15.98-16.07-31.54-21.25-46.42L20.12 215.95zM288 359.67c-14.07 0-27.38-6.18-36.51-16.96-19.66-23.2-40.57-49.62-59.49-76.72v182l192 64V266c-18.92 27.09-39.82 53.52-59.49 76.72-9.13 10.77-22.44 16.95-36.51 16.95zm266.06-198.51L416 224v288l139.88-55.95A31.996 31.996 0 0 0 576 426.34V176.02c0-11.32-11.43-19.06-21.94-14.86z"></path></svg>
+           <span>{post.location}</span> </span>
+          <span class="meta-item flex items-center gap-2"> <svg aria-hidden="true" width="25px" height="25px" fill="#fff" class="e-font-icon-svg e-fas-stopwatch" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M432 304c0 114.9-93.1 208-208 208S16 418.9 16 304c0-104 76.3-190.2 176-205.5V64h-28c-6.6 0-12-5.4-12-12V12c0-6.6 5.4-12 12-12h120c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-28v34.5c37.5 5.8 71.7 21.6 99.7 44.6l27.5-27.5c4.7-4.7 12.3-4.7 17 0l28.3 28.3c4.7 4.7 4.7 12.3 0 17l-29.4 29.4-.6.6C419.7 223.3 432 262.2 432 304zm-176 36V188.5c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12V340c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12z"></path></svg><span>{post.job_expires}</span></span>
+        </div>
+      </div>
+    </section>
+
+    <div class="max-w-7xl mx-auto px-4 py-16 page-content flex lg:flex-row flex-col">
+      <div class="main-col lg:w-2/3 w-full">
+        <!-- Company block -->
+        <div class="company-block">
+          <img src={post.image_url} alt={post.company} class="company-logo" />
+          <div class="company-info">
+            <h2>{post.company}</h2>
+            <a href="https://leveingroup.com/" target="_blank" rel="noopener">
+              https://leveingroup.com/
+            </a>
+          </div>
+        </div>
+
+        <!-- About Us -->
+        <section id="about-us" class="section">
+          <h3>About Us</h3>
+          <p>At Levein Group, we’re driving digital innovation across UK’s most dynamic sectors – from healthcare and fintech to hospitality and tech startups, all from our vibrant hub in Colombo, Sri Lanka. Join our passionate team of technologists where your creativity and skills can transform multiple industries. We offer more than just a job – we provide an environment where innovation meets purpose, where your growth matters, and where your solutions impact leading UK businesses. Ready to work on diverse, cutting-edge projects?</p>
+        </section>
+
+        <!-- Job Description -->
+        <section id="description" class="section">
+          <h3>Job Description</h3>
+          <div set:html={post.job_description} />
+        </section>
+
+        <!-- Requirements -->
+        <section id="requirements" class="section">
+          <h3>Requirements</h3>
+          <div set:html={post.job_requirements} />
+        </section>
+
+        <!-- Benefits -->
+        <section id="benefits" class="section">
+          <h3>Benefits</h3>
+          <div set:html={post.job_benefits} />
+        </section>
+       <section class="job-footer mt-12 mb-6 pt-8 border-t border-gray-200">
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="/" class="back-to-job">
+              ← Back to Jobs
+            </a>
+            <button data-job-id={post.id} data-job-title={post.title} data-slug={post.slug} data-tableId={post.airtable_resume_id} class="btn-apply">
+              Apply Now →
+            </button>
+          </div>
+        </section>
+        <!-- Recent Jobs -->
+        <!-- <section class="section recent-jobs hidden lg:block">
+          <h3>Recent Jobs</h3>
+          <ul class="recent-list">
+            {recentJobs.map((r) => (
+              <li>
+                <span>{r.title}</span>
+                <button class="apply-btn">Apply Now</button>
+                <small>{r.timeAgo}</small>
+              </li>
+            ))}
+          </ul>
+        </section> -->
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="sidebar lg:w-1/3">
+        <div class="apply-box">
+          <p>Click below to submit your resume and send your application directly to the employer.</p>
+          <button class="btn-apply" data-job-id={post.id} data-slug={post.slug} data-job-title={post.title} data-tableId={post.airtable_resume_id}>Apply Now</button>
+        </div>
+        <div class="overview">
+          <h4>Job Overview</h4>
+          <ul class="flex flex-col gap-4">
+            <li><strong>Contract Type:</strong> {post.job_listing_type}</li>
+            <li><strong>Career Level:</strong> {post.job_level}</li>
+            <li><strong>Specialism:</strong> {post.job_specialsum}</li>
+            <li><strong>Experience Level:</strong> {post.job_experience}</li>
+            <li><strong>Qualification:</strong> {post.job_qualification.join(", ")}</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+    
+</article>
+<script type="module">
+
+  document.body.addEventListener('click', (e) => {
+    if (e.target.classList.contains('btn-apply')) {
+      e.preventDefault();
+      
+      const slug = e.target.getAttribute('data-slug');
+
+      sessionStorage.setItem('jobId', e.target.getAttribute('data-job-id'));
+      sessionStorage.setItem('jobTitle', e.target.getAttribute('data-job-title'));
+      sessionStorage.setItem('tableId', e.target.getAttribute('data-tableId'));
+      sessionStorage.setItem('tempUrl', `/submit-resume/?apply-for=${slug}`);
+      window.location.href = `/submit-resume/?apply-for=${slug}`;
+    }
+  });
+</script>
+</Layout>

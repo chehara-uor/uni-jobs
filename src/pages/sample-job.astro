@@ -1,0 +1,164 @@
+---
+import Layout from '@layouts/Layout.astro';
+import "../styles/global.css";
+import "@styles/job.scss";
+
+// In a real setup you'd fetch data based on params.slug
+const job = {
+  title: "Data Analyst",
+  backgroundImage: "https://remotejobsinasia.com/wp-content/uploads/2025/08/inside-banner.webp", // swap for your hero JPG
+  contract: "Permanent - Full time",
+  location: "Colombo 05",
+  datePosted: "August 30, 2025",
+  company: {
+    name: "Levein Group",
+    logo: "https://remotejobsinasia.com/wp-content/uploads/2024/09/job-feature-img-final.png",
+    website: "https://leveingroup.com/careers",
+  },
+  about: `At Levein Group, we 're driving digital innovation across UK's most dynamic sectors – from healthcare and fintech to hospitality and tech startups, all from our vibrant hub in Colombo, Sri Lanka. Join our passionate team of technologists where your creativity and skills can transform multiple industries. We offer more than just a job – we provide an environment where innovation meets purpose, where your growth matters, and where your solutions impact leading UK businesses. Ready to work on diverse, cutting-edge projects? Explore opportunities at www.leveingroup.com/careers`,
+  description: {
+    summary:
+      "We are seeking a highly analytical and innovative professional to join our team as a Data Analyst. In this role, you will work with large-scale sensor and time series data to uncover trends, detect anomalies, and build predictive models that inform care and monitoring strategies.",
+    responsibilities: [
+      "Analyze and model time series sensor data to identify trends, anomalies, and forecasting opportunities.",
+      "Apply signal processing techniques to clean noisy, irregular data and extract meaningful features.",
+      "Develop and validate robust forecasting models to support long-term trend analysis and actionable insights for care monitoring.",
+      "Optionally explore novel approaches such as transformer-based models to improve predictive performance.",
+      "Contribute to data-to-text generation and LLM-based initiatives to make insights accessible to non-technical stakeholders.",
+    ],
+  },
+  requirements: {
+    essential: [
+      "Minimum 7 years of experience in a data science or analytical role.",
+      "Experience working with time series data or familiarity with sensor data settings.",
+      "Proficiency in at least one of Python, R, or Julia.",
+      "Strong SQL skills for data extraction and manipulation.",
+      "Experience working with large, noisy, and often unlabeled datasets.",
+    ],
+    niceToHave: [
+      "Experience with deep learning (e.g. transformers) or LLM-based data-to-text generation.",
+    ],
+  },
+  benefits: [
+    { label: "General Work Hours", text: "12.30PM - 9.30PM (WFH) Sri Lanka Time — 45hrs/week." },
+    { label: "Location", text: "Remote WFH + Occasional meets at our Colombo 05 office — Sri Lanka." },
+    { label: "Benefits", text: "Paid leave, career upskilling opportunities, eLearning courses." },
+  ],
+  recent: [
+    { title: "Accountant", timeAgo: "4 weeks ago" },
+    { title: "Senior Bookkeeper", timeAgo: "3 weeks ago" },
+    { title: "Finance Manager", timeAgo: "2 weeks ago" },
+  ],
+};
+---
+    <Layout>
+<article class="job-page mt-[80px]">
+    <!-- Hero -->
+    <section
+      class="job-hero"
+      style={`background-image: linear-gradient(45deg, rgba(232,27,57,0.7), rgba(16,25,93,0.7)), url('${job.backgroundImage}')`}
+    >
+      <div class="container">
+        <h1 class="job-title">{job.title}</h1>
+        <div class="job-meta">
+          <span class="pill">{job.contract}</span>
+          <span class="meta-item">{job.location}</span>
+          <span class="meta-item">{job.datePosted}</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="max-w-7xl mx-auto px-4 py-16 page-content flex lg:flex-row flex-col">
+      <div class="main-col lg:w-2/3 w-full">
+        <!-- Company block -->
+        <div class="company-block">
+          <img src={job.company.logo} alt={job.company.name} class="company-logo" />
+          <div class="company-info">
+            <h2>{job.company.name}</h2>
+            <a href={job.company.website} target="_blank" rel="noopener">
+              {job.company.website}
+            </a>
+          </div>
+        </div>
+
+        <!-- About Us -->
+        <section class="section">
+          <h3>About Us</h3>
+          <p>{job.about}</p>
+        </section>
+
+        <!-- Job Description -->
+        <section class="section">
+          <h3>Job Description</h3>
+          <p class="summary">{job.description.summary}</p>
+          <ul class="list">
+            {job.description.responsibilities.map((r) => (
+              <li>{r}</li>
+            ))}
+          </ul>
+        </section>
+
+        <!-- Requirements -->
+        <section class="section">
+          <h3>Requirements</h3>
+          <strong>Essential Skills, Knowledge & Experience</strong>
+          <ul class="list">
+            {job.requirements.essential.map((e) => (
+              <li>{e}</li>
+            ))}
+          </ul>
+          <strong>Nice to have</strong>
+          <ul class="list">
+            {job.requirements.niceToHave.map((n) => (
+              <li>{n}</li>
+            ))}
+          </ul>
+        </section>
+
+        <!-- Benefits -->
+        <section class="section">
+          <h3>Benefits</h3>
+          <ul class="benefits-list">
+            {job.benefits.map((b) => (
+              <li>
+                <strong>{b.label}:</strong> {b.text}
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <!-- Recent Jobs -->
+        <section class="section recent-jobs hidden lg:block">
+          <h3>Recent Jobs</h3>
+          <ul class="recent-list">
+            {job.recent.map((r) => (
+              <li>
+                <span>{r.title}</span>
+                <button class="apply-btn">Apply Now</button>
+                <small>{r.timeAgo}</small>
+              </li>
+            ))}
+          </ul>
+        </section>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="sidebar lg:w-1/3">
+        <div class="apply-box">
+          <p>Click below to submit your resume and send your application directly to the employer.</p>
+          <button class="btn-apply">Apply Now</button>
+        </div>
+        <div class="overview">
+          <h4>Job Overview</h4>
+          <ul class="flex flex-col gap-6">
+            <li><strong>Contract Type:</strong> {job.contract}</li>
+            <li><strong>Career Level:</strong> Senior</li>
+            <li><strong>Specialism:</strong> Healthcare & Life Sciences</li>
+            <li><strong>Experience Level:</strong> 5-10 years</li>
+            <li><strong>Qualification:</strong> Bachelor 's Degree</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+</article>
+    </Layout>

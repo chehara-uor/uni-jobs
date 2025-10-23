@@ -1,0 +1,125 @@
+
+@use '@styles/mixins/mixins' as *;
+@use "@styles/variables/colors" as *;
+.jobGrid {
+  // display: grid;
+  // grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.jobCard {
+  display: flex;
+  align-items: center;
+  border-radius: 12px;
+  background: $clr-white;
+  padding: 1.5rem 1.25rem;
+  box-shadow: 0 12px 32px rgba(31, 41, 55, 0.07);
+  transition: all 0.25s ease-in-out;
+  border: 1px solid rgba(31, 41, 55, 0.05);
+  min-height: 160px;
+  @include mobile{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.jobLogo {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  margin-right: 1rem;
+  @include mobile {
+    width: 60px;
+    height: 60px;
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+}
+
+.jobDetails {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  .jobHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .jobTitle {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 600;
+      color: #111827;
+    }
+  }
+
+  .jobInfo {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    color: #4b5563;
+    @include mobile{
+      gap: 12px;
+    }
+
+    svg{
+      width: 20px;
+      height: 20px;
+      fill: #6b7280;
+      margin-right: 0.25rem;
+      margin-bottom: 5px;
+    }
+    span{
+      font-size: 13px;
+    }
+
+    .icon {
+      width: 16px;
+      height: 16px;
+      margin-right: 0.25rem;
+      fill: #e81b39;
+      flex-shrink: 0;
+    }
+  }
+
+  @include mobile {
+      justify-content: center;
+      align-items: flex-start;
+      gap: 0.25rem;
+  }
+}
+.jobMoreInfo{
+
+  .jobDate {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.875rem;
+      color: #6b7280;
+
+      svg{
+        margin-bottom: 5px;
+      }
+  }
+  .jobApplyBtn {
+    padding: 0.5rem 1rem;
+    border: 1px solid $clr-main;
+    background: transparent;
+    color: $clr-main;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:hover {
+      background: rgba(27, 109, 232, 0.05);
+    }
+  }
+  @include mobile {
+    margin-top: 15px;
+    align-items: flex-start;
+  }
+}

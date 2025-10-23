@@ -1,0 +1,35 @@
+---
+import Header from '@components/Header';
+import Footer from '@components/Footer.astro';
+import "@styles/global.css";
+---
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" href="/uj-32x32.png" sizes="32x32" />
+		<link rel="icon" href="/uj-192x192.png" sizes="192x192" />
+		<link rel="apple-touch-icon" href="/uj-180x180.png" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Uni Jobs</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<Header client:load />
+		<slot />
+		<Footer/>
+	</body>
+</html>
+
+<style>
+	html,
+	body {
+		margin: 0;
+		width: 100%;
+		height: 100%;
+		font-family: 'Quicksand', sans-serif;
+	}
+</style>

@@ -1,0 +1,217 @@
+---
+import "@styles/how-it-works.scss";
+import HeroSection from '@components/HeroSection.astro';
+import styles from "@styles/info-cards.module.scss";
+const steps = [
+  {
+    number: 1,
+    imageSrc: 'https://remotejobsinasia.com/wp-content/uploads/2024/10/how-it-works-1.jpg',
+    title: "Browse Job Listings",
+    description: [
+       "Visit our job board to explore available remote positions from UK and European tech companies.",
+       "Use our search function to filter jobs by category, skill requirements, or company.",
+       "Each job listing includes detailed information about the role, company, and application process.",
+       "No account is required to browse jobs - dive right in!"
+    ],
+    imagePosition: "left",
+  },
+  {
+    number: 2,
+    imageSrc: 'https://remotejobsinasia.com/wp-content/uploads/2024/10/how-it-works-2.jpg',
+    title: "Find a Job You Like",
+    description: [
+       "When you find a job that interests you, click on the listing to view full details.",
+      "Review the job description, requirements, and company information carefully.",
+      "If you're ready to apply, click the \"Apply Now\" button."
+    ],
+    imagePosition: "right",
+  },
+  {
+    number: 3,
+    imageSrc: 'https://remotejobsinasia.com/wp-content/uploads/2024/10/how-it-works-3.jpg',
+    title: "Complete Your Resume",
+    description:[
+      "After clicking apply,  you can proceed with your application.",
+      "Upload your resume and add details about your skills, experience, and job preferences.",
+      "The more complete your profile, the better we can match you with suitable opportunities."
+    ],
+    imagePosition: "left",
+  },
+  {
+    number: 4,
+    imageSrc: 'https://remotejobsinasia.com/wp-content/uploads/2024/10/how-it-works-5.jpg',
+    title: "Apply for Jobs",
+    description: [
+      "Once your resume is complete, you can proceed with your application",
+      "Follow the application instructions provided by the employer.",
+      "Some applications may be completed directly on our platform, while others may redirect you to the company's website."
+    ],
+    imagePosition: "right",
+  },
+  {
+    number: 5,
+    imageSrc: 'https://remotejobsinasia.com/wp-content/uploads/2024/10/how-it-works-6.jpg',
+    title: "Track Your Applications",
+    description: [
+      "Visit your \"My Application Status\" link with your id to see the status of all your job applications.",
+      "Stay organized and never miss an opportunity!"
+    ],
+    imagePosition: "left",
+  },
+    {
+    number: 6,
+    imageSrc: 'https://remotejobsinasia.com/wp-content/uploads/2024/10/how-it-works-9.jpg',
+    title: "Prepare for Interviews",
+    description: [
+      "If an employer is interested, they'll contact you through our platform or directly via email.",
+      "Use our interview preparation resources to help you succeed in your interviews."
+    ],
+    imagePosition: "right",
+  },
+  //  {
+  //   number: 7,
+  //   imageSrc: 'https://remotejobsinasia.com/wp-content/uploads/2024/10/how-it-works-7.png',
+  //   title: "Receive Job Offers",
+  //   description: [
+  //     "Congratulations! If you're selected for a position, you'll receive a job offer.",
+  //     "Review the offer carefully and use our resources if you need help with negotiations."
+  //   ],
+  //   imagePosition: "left",
+  // },
+  // {
+  //   number: 8,
+  //   imageSrc: 'https://remotejobsinasia.com/wp-content/uploads/2024/10/how-it-works-8.jpg',
+  //   title: "Ongoing Support",
+  //   description: [
+  //     "Even after you've landed a job, you can continue to use our resources for remote work tips and career development",
+  //     "Keep your profile updated for future opportunities"
+  //   ],
+  //   imagePosition: "right",
+  // }
+];
+import Layout from '@layouts/Layout.astro';
+---
+  <Layout>
+<HeroSection
+  pageTitle="How It Works"
+  crumb="How It Works"
+/>
+<section aria-label="How it works" class="how-it-works py-16">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="title">How It Works</h2>
+      <p class="subtitle">
+        A quick, clear journey from discovery to being matched with remote
+        opportunities.
+      </p>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex flex-col gap-16 mt-12">
+        {
+          steps.map((step) => (
+            <div
+              id={`step-${step.number}`}
+              class={`step flex flex-col md:flex-row items-center gap-4 reveal ${
+                step.imagePosition === "right" ? "card-reverse" : ""
+              }`}
+            >
+              <div class="visual flex-1">
+                <div class="image-wrapper" aria-hidden="true">
+                  <div class="image-gradient"></div>
+                  <img src={step.imageSrc} alt={`Step ${step.number} - ${step.title}`} />
+                </div>
+              </div>
+              <div class="content flex-1 flex items-center">
+                <div class="card">
+                  <div class="number-badge" aria-label={`Step ${step.number}`}>
+                    {step.number}
+                  </div>
+                  <h3 class="step-title">{step.title}</h3>
+                  <ul>
+                    {step.description.map((desc) => (
+                      <li class="step-desc"><svg aria-hidden="true" class="e-font-icon-svg e-fas-check-square" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M400 480H48c-26.51 0-48-21.49-48-48V80c0-26.51 21.49-48 48-48h352c26.51 0 48 21.49 48 48v352c0 26.51-21.49 48-48 48zm-204.686-98.059l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.248-16.379-6.249-22.628 0L184 302.745l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.25 16.379 6.25 22.628.001z"></path></svg> {desc}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="max-w-7xl mx-auto px-4 pb-16 grid grid-cols-1 gap-6 sm:grid-cols-2">
+  <!-- Card 1 -->
+  <section
+    class={`${styles.infoCard} group rounded-xl border border-black/10 bg-white/90 p-5 shadow-sm transition-all hover:shadow-md`}
+    role="region"
+    aria-label="Lightning-fast Setup"
+  >
+    <div class="flex items-start gap-4">
+      <div
+        class={`${styles.iconWrap} grid h-12 w-12 place-items-center rounded-lg ring-1 ring-black/10`}
+        aria-hidden="true"
+      >
+        <!-- Spark icon -->
+        <svg
+          class={styles.icon}
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+        >
+          <path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z" />
+        </svg>
+      </div>
+
+      <div>
+        <h3 class="text-base font-semibold leading-tight">Community Forum</h3>
+        <p class="mt-1 text-sm leading-relaxed">
+          Connect with other job seekers and remote workers to share experiences and advice.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Card 2 -->
+  <section
+    class={`${styles.infoCard} group rounded-xl border border-black/10 bg-white/90 p-5 shadow-sm transition-all hover:shadow-md`}
+    role="region"
+    aria-label="Built-in Security"
+  >
+    <div class="flex items-start gap-4">
+      <div
+        class={`${styles.iconWrap} grid h-12 w-12 place-items-center rounded-lg ring-1 ring-black/10`}
+        aria-hidden="true"
+      >
+        <!-- Shield-check icon -->
+        <svg
+          class={styles.icon}
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+        >
+          <path d="M12 3l7 3v5c0 5.25-3.5 9.75-7 10-3.5-.25-7-4.75-7-10V6l7-3z" />
+          <path d="M9.5 12.5l2 2 4-4" />
+        </svg>
+      </div>
+
+      <div>
+        <h3 class="text-base font-semibold leading-tight">Resource Center</h3>
+        <p class="mt-1 text-sm leading-relaxed">
+          Access our library of articles, webinars, and tools to enhance your skills and remote work readiness.
+        </p>
+      </div>
+    </div>
+  </section>
+</div>
+
+  </Layout>
+
+

@@ -1,0 +1,413 @@
+// Design tokens
+@use "@styles/variables/typography" as *;
+@use "@styles/variables/colors" as *;
+@use "@styles/mixins/mixins" as *;
+
+$clr-accent-dark: $clr-accent;
+$radius-md: 12px;
+$shadow: 0 12px 32px rgba(31, 41, 55, 0.07);
+$transition: all 0.25s ease-in-out;
+
+// Base
+body {
+  font-family: $font-primary;
+  background: $clr-bg;
+  color: $clr-text;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+  transition: color 0.2s;
+  &:hover {
+    color: $clr-main;
+    text-decoration: none;
+  }
+}
+
+// Utility overrides if needed
+.text-primary {
+  color: $clr-text !important;
+}
+
+// Hero
+.hero {
+  background: linear-gradient(45deg, $clr-main 0%, #10195d 70%);
+  // background-image: linear-gradient(45deg, #7db806 0%, #0078c1 71%);
+  position: relative;
+  overflow: hidden;
+
+  .hero-title {
+    font-size: 2.75rem;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.1;
+  }
+
+  .hero-subtitle {
+    font-size: 1.125rem;
+    margin: 0;
+    color: #d1d6e0;
+  }
+
+  .btn {
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 0.75rem 1.25rem;
+    cursor: pointer;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: $transition;
+    font-size: 0.9rem;
+    min-width: 140px;
+  }
+
+  .btn-primary {
+    background: $clr-main;
+    color: white;
+    border: 2px solid $clr-main;
+    &:hover {
+      background: rgba(0, 119, 193, 0.897);
+      border-color: rgba(0, 119, 193, 0.897);
+    }
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+    &:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+  }
+}
+
+// Section titles
+.section-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  position: relative;
+  display: inline-block;
+}
+
+// Job Card
+.job-card {
+  background: $clr-card;
+  border-radius: $radius-md;
+  padding: 1.5rem 1.25rem;
+  box-shadow: $shadow;
+  display: flex;
+  flex-direction: column;
+  transition: $transition;
+  border: 1px solid rgba(31, 41, 55, 0.05);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 48px rgba(31, 41, 55, 0.08);
+  }
+
+  .job-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0 0 4px;
+  }
+  .job-company {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin: 0 0 6px;
+    color: $clr-muted;
+  }
+  .job-meta {
+    font-size: 0.85rem;
+    color: $clr-muted;
+    margin-bottom: auto;
+  }
+
+  .btn-primary {
+    cursor: pointer;
+    margin-top: 15px;
+    align-self: flex-start;
+  }
+  .apply-now {
+    padding: 0.5rem 1rem;
+    border: 1px solid $clr-main;
+    background: transparent;
+    color: $clr-main;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    transition: background-color 0.2s, color 0.2s;
+    &:hover {
+      background: rgba(27, 109, 232, 0.05);
+    }
+  }
+}
+
+// Category card
+.category-card {
+  background: $clr-card;
+  border-radius: $radius-md;
+  padding: 1rem 1rem;
+  box-shadow: $shadow;
+  border: 1px solid rgba(31, 41, 55, 0.04);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  .category-name {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0 0 4px;
+  }
+  .category-count {
+    font-size: 14px;
+    color: $clr-muted;
+    margin: 0;
+  }
+  .category-image-wrapper {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 100%;
+      height: 100%;
+      stroke: $clr-main;
+    }
+  }
+}
+
+/* Filter bar & drawer */
+.filter-bar {
+  .filter-wrapper {
+    border-radius: 14px;
+    border: 1px solid rgba(31, 41, 55, 0.08);
+    box-shadow: 0 16px 48px rgba(31, 41, 55, 0.04);
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .filter-input,
+  .filter-select {
+    appearance: none;
+    background: #f9fafa;
+    border: 1px solid rgba(31, 41, 55, 0.1);
+    border-radius: 8px;
+    padding: 10px 12px 10px 38px;
+    font-size: 0.9rem;
+    width: 100%;
+    color: $clr-text;
+    transition: all 0.2s;
+    &:focus {
+      outline: 2px solid $clr-main;
+      background: #fff;
+    }
+  }
+  .clear_button {
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background-color 0.2s, color 0.2s;
+    &:hover {
+      background-color: #e81b3a1f;
+      color: #ffffff;
+    }
+  }
+
+  .input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    .input-icon {
+      position: absolute;
+      left: 12px;
+      display: flex;
+      align-items: center;
+      pointer-events: none;
+      svg {
+        display: block;
+      }
+    }
+
+    input {
+      padding-left: 38px;
+    }
+
+    ::placeholder {
+      color: #999;
+      font-style: italic;
+    }
+
+    /* Older browser compatibility (less common now but historically used) */
+    ::-webkit-input-placeholder {
+      /* Chrome, Safari, Opera */
+      color: #999;
+      font-style: italic;
+    }
+
+    ::-moz-placeholder {
+      /* Firefox 19+ */
+      color: #999;
+      font-style: italic;
+    }
+  }
+
+  label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+    display: block;
+    color: rgba($clr-text, 0.8);
+  }
+
+  .btn-secondary {
+    background: #f1f5f9;
+    border: 1px solid rgba(31, 41, 55, 0.08);
+    color: $clr-text;
+    padding: 0.65rem 1rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    &:hover {
+      background: #f1f5f9;
+    }
+  }
+
+  .text-sm {
+    &.text-orange-600 {
+      color: #0078c1;
+    }
+  }
+
+  .advanced-filters {
+    > div {
+      flex: 1 1 180px;
+    }
+  }
+}
+.button-plain {
+  background-color: #00000000;
+  font-family: $font-primary;
+  font-weight: 500;
+  line-height: 18px;
+  fill: $clr-main;
+  color: $clr-main;
+  border-style: solid;
+  border-width: 2px 2px 2px 2px;
+  border-color: $clr-main;
+  border-radius: 8px 8px 8px 8px;
+  padding: 14px 30px 14px 30px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.2s, color 0.2s;
+  &:hover {
+    background-color: rgba(0, 119, 193, 0.897);
+    color: rgb(254, 244, 245);
+  }
+}
+/* Mobile drawer */
+.mobile-drawer {
+  .drawer-panel {
+    border-radius: 0 12px 12px 0;
+    box-shadow: 0 32px 80px rgba(31, 41, 55, 0.15);
+    position: relative;
+
+    select,
+    .filter-select {
+      margin-top: 4px;
+    }
+
+    .btn-primary {
+      width: 100%;
+      margin-top: 8px;
+    }
+  }
+
+  &.hidden-toggle {
+    display: none;
+  }
+}
+
+/* small adjustment so hidden logic works if you rely on .hidden */
+.hidden-toggle {
+  display: none;
+}
+
+// How it works
+#how-it-works {
+  .hiw-step {
+    background: $clr-card;
+    border-radius: $radius-md;
+    padding: 1.5rem;
+    box-shadow: $shadow;
+    position: relative;
+    transition: $transition;
+
+    &:hover {
+      transform: translateY(-1px);
+    }
+
+    .hiw-icon {
+      background: $clr-main;
+      color: #fff;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+      font-size: 1rem;
+    }
+
+    h3 {
+      margin: 0 0 6px;
+      font-size: 1.125rem;
+      font-weight: 600;
+    }
+    p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: $clr-muted;
+    }
+  }
+}
+
+// Footer
+footer {
+  background: #0f101c;
+  color: #d1d6e0;
+
+  p {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+}
+
+// Responsive tweaks
+@media (max-width: 768px) {
+  .hero .hero-title {
+    font-size: 2.25rem;
+  }
+  .hero {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+}

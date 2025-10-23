@@ -1,0 +1,175 @@
+---
+import Layout from "@layouts/Layout.astro";
+import "../styles/global.css";
+import "@styles/services.scss";
+import HeroSection from '@components/HeroSection.astro';
+const sections = [
+  {
+    title: "Curated Job Listings",
+    items: [
+      {
+        title: "Handpicked Opportunities",
+        desc: "We meticulously select and verify remote job openings from leading UK and European tech companies.",
+      },
+      {
+        title: "Regular Updates",
+        desc: "Our job board is refreshed daily, ensuring you have access to the latest opportunities.",
+      },
+      {
+        title: "Tailored Matches",
+        desc: "Receive job recommendations based on your skills, experience, and preferences.",
+      },
+    ],
+  },
+  {
+    title: "Profile Enhancement",
+    items: [
+      {
+        title: "Resume Review",
+        desc: "Get expert feedback to optimize your resume for remote tech positions.",
+      },
+      {
+        title: "LinkedIn Optimization",
+        desc: "Learn how to make your LinkedIn profile stand out to European recruiters.",
+      },
+      {
+        title: "Portfolio Guidance",
+        desc: "Receive tips on showcasing your projects and skills effectively.",
+      },
+    ],
+  },
+  {
+    title: "Interview Preparation",
+    items: [
+      {
+        title: "Mock Interviews",
+        desc: "Practice with industry experts familiar with European tech company standards.",
+      },
+      {
+        title: "Cultural Insights",
+        desc: "Gain valuable insights into UK and European work cultures.",
+      },
+      {
+        title: "Technical Interview Prep",
+        desc: "Sharpen your skills for coding challenges and technical discussions.",
+      },
+    ],
+  },
+  {
+    title: "Skill Development Resources",
+    items: [
+      {
+        title: "Tech Trend Updates",
+        desc: "Stay informed about the latest technologies in demand among European startups.",
+      },
+      {
+        title: "Webinars and Workshops",
+        desc: "Participate in sessions led by industry experts on cutting-edge tech and AI topics.",
+      },
+      {
+        title: "Learning Paths",
+        desc: "Access curated resources to enhance your skills in areas crucial for remote tech roles.",
+      },
+    ],
+  },
+  {
+    title: "Remote Work Readiness",
+    items: [
+      {
+        title: "Home Office Setup Guide",
+        desc: "Learn how to create an optimal remote work environment.",
+      },
+      {
+        title: "Productivity Tools Training",
+        desc: "Get familiar with popular collaboration and project management tools used by European companies.",
+      },
+      {
+        title: "Time Management Strategies",
+        desc: "Master techniques for maintaining work-life balance across time zones.",
+      },
+    ],
+  },
+  {
+    title: "Networking Opportunities",
+    items: [
+      {
+        title: "Virtual Meetups",
+        desc: "Connect with fellow job seekers and professionals working remotely for European companies.",
+      },
+      {
+        title: "Company Spotlights",
+        desc: "Gain insights into featured UK and European tech startups through exclusive content.",
+      },
+      {
+        title: "Industry Events",
+        desc: "Get notified about relevant online tech conferences and networking events.",
+      },
+    ],
+  },
+  {
+    title: "Ongoing Career Support",
+    items: [
+      {
+        title: "Salary Negotiation Tips",
+        desc: "Learn how to navigate compensation discussions for remote roles.",
+      },
+      {
+        title: "Contract Review Guidance",
+        desc: "Understand the key elements of remote work contracts with European employers.",
+      },
+      {
+        title: "Career Progression Advice",
+        desc: "Receive guidance on growing your career while working remotely for international companies.",
+      },
+    ],
+  },
+];
+---
+
+<Layout>
+  <HeroSection
+    pageTitle="Our Services"
+    crumb="Our Services"
+  />
+        <!-- Services grid -->
+    <section class="py-16">
+      <div class="max-w-7xl mx-auto px-4 space-y-16">
+         <!-- <div class="callout">
+          <p>
+                At RemoteJobsInAsia.com, we're committed to helping you secure your ideal remote position with innovative UK and European tech and AI startups. Our comprehensive suite of services is designed to support you at every stage of your job search journey
+          </p>
+        </div> -->
+        {sections.map((section) => (
+          <section id={section.title.toLowerCase().replace(/\s+/g, "-")} class="service-section flex flex-col gap-10">
+            <h2 class="section-heading">{section.title}</h2>
+            <div class="cards grid">
+              {section.items.map((it) => (
+                <div class="service-card flex flex-col items-center">
+                  <div class="icon">
+                    <div class="svg-wrapper" aria-hidden="true">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="62" height="62" viewBox="0 0 62 62" fill="none">
+                        <rect width="62" height="62" rx="31" fill="#E81B39" />
+                        <path
+                          d="M40 19H35.4625C34.902 18.3704 34.2146 17.8666 33.4454 17.5216C32.6763 17.1766 31.8429 16.9983 31 16.9983C30.1571 16.9983 29.3237 17.1766 28.5546 17.5216C27.7854 17.8666 27.098 18.3704 26.5375 19H22C21.4696 19 20.9609 19.2107 20.5858 19.5858C20.2107 19.9609 20 20.4696 20 21V42C20 42.5304 20.2107 43.0391 20.5858 43.4142C20.9609 43.7893 21.4696 44 22 44H40C40.5304 44 41.0391 43.7893 41.4142 43.4142C41.7893 43.0391 42 42.5304 42 42V21C42 20.4696 41.7893 19.9609 41.4142 19.5858C41.0391 19.2107 40.5304 19 40 19ZM31 19C32.0599 19.0033 33.0754 19.4258 33.8248 20.1752C34.5742 20.9246 34.9967 21.9401 35 23H27C27.0033 21.9401 27.4258 20.9246 28.1752 20.1752C28.9246 19.4258 29.9401 19.0033 31 19ZM35 35H27C26.7348 35 26.4804 34.8946 26.2929 34.7071C26.1054 34.5196 26 34.2652 26 34C26 33.7348 26.1054 33.4804 26.2929 33.2929C26.4804 33.1054 26.7348 33 27 33H35C35.2652 33 35.5196 33.1054 35.7071 33.2929C35.8946 33.4804 36 33.7348 36 34C36 34.2652 35.8946 34.5196 35.7071 34.7071C35.5196 34.8946 35.2652 35 35 35ZM35 31H27C26.7348 31 26.4804 30.8946 26.2929 30.7071C26.1054 30.5196 26 30.2652 26 30C26 29.7348 26.1054 29.4804 26.2929 29.2929C26.4804 29.1054 26.7348 29 27 29H35C35.2652 29 35.5196 29.1054 35.7071 29.2929C35.8946 29.4804 36 29.7348 36 30C36 30.2652 35.8946 30.5196 35.7071 30.7071C35.5196 30.8946 35.2652 31 35 31Z"
+                          fill="white"
+                        ></path>
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="content flex flex-col items-center">
+                    <h3 class="card-title">{it.title}</h3>
+                    <p class="card-desc text-center">{it.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        ))}
+        <div class="callout">
+          <p>
+            At RemoteJobsInAsia.com, we're more than just a job board. We're your partner in building a successful remote career with innovative European tech companies. Let us help you turn your dream of a rewarding remote job into reality!
+          </p>
+        </div>
+      </div>
+    </section>
+</Layout>

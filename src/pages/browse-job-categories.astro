@@ -1,0 +1,43 @@
+---
+import "@styles/categories.scss";
+import type { Categories } from "@lib/types";
+import Layout from "@layouts/Layout.astro";
+import HeroSection from "@components/HeroSection.astro";
+import { fetchCategories } from "@lib/wp";
+import { getCategoryImage } from "../utils/categories";
+
+const categories = await fetchCategories();
+
+const CatLogs: Categories[] = categories.map((cat) => ({
+  id: cat.id,
+  name: cat.name,
+  count: cat.count,
+  slug: cat.slug,
+  svg: getCategoryImage(cat.slug),
+}));
+---
+
+<Layout>
+  <HeroSection pageTitle="Browse Job Categories" crumb="Job Categories" />
+  <section class="categories-section">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Card 1 -->
+         <!-- class={cat.count > 0 ? "grid" : "hidden"} -->
+        {
+          CatLogs.map((cat) => (
+            <a href={`/category/?name=${cat.slug}`}>
+              <div class="category-card">
+                <div class="icon-wrapper">
+                  <Fragment set:html={cat.svg} />
+                </div>
+                <h3 class="category-title">{cat.name}</h3>
+                <p class="category-count">{cat.count} open positions</p>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Layout>

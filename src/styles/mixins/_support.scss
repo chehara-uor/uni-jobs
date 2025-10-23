@@ -1,0 +1,43 @@
+// Most Common CSS 
+.hero-banner {
+  background: url('../../assets/background.jpg') no-repeat center center;
+  padding: 2.5rem 0;
+  border-radius: 0;
+  margin-bottom: 0;
+
+  .page-title {
+    font-size: 30px;
+    font-weight: 700;
+    color: white;
+    margin: 0;
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.85);
+
+    .crumb {
+      position: relative;
+      &.active {
+        font-weight: 600;
+        &::after {
+          content: '';
+          display: block;
+          width: -webkit-fill-available;
+          height: 2px;
+          background: white;
+          margin-top: 0;
+          border-radius: 1px;
+        }
+      }
+    }
+
+    .sep {
+      margin: 0 4px;
+    }
+  }
+}
+          

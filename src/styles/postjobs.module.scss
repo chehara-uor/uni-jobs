@@ -1,0 +1,49 @@
+
+
+form {
+ 
+  input,
+  select,
+  textarea {
+    transition: border-color 0.3s ease;
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    border-color: $clr-main; /* Tailwind pink-500 */
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(232, 27, 57, 0.3);
+  }
+
+  select{
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%239CA3AF' stroke-width='1.5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    padding-right: 2rem;
+  }
+}
+
+button {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+input[type="file"]::file-selector-button {
+  /* Style the button directly */
+  background-color: #e81b39;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background-color: #e81b39;
+}

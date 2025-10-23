@@ -1,0 +1,161 @@
+@use "@styles/variables/typography" as *;
+@use "@styles/variables/colors" as *;
+@use "@styles/mixins/mixins" as *;
+@use "@styles/mixins/support" as *;
+
+$radius: 12px;
+$shadow: 0 32px 80px rgba(31, 41, 55, 0.06);
+$transition: all 0.3s ease;
+
+body {
+  background: $clr-bg;
+  color: $clr-text;
+}
+
+.site-nav {
+  background: white;
+  border-bottom: 1px solid rgba(31, 41, 55, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+  }
+  .logo {
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+    color: $clr-text;
+  }
+  .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    align-items: center;
+    a {
+      text-decoration: none;
+      font-size: 0.9rem;
+      color: $clr-text;
+      position: relative;
+      padding: 6px 2px;
+      &.btn-post {
+        background: #e81b39;
+        color: white;
+        padding: 8px 14px;
+        border-radius: 6px;
+        font-weight: 600;
+        margin-left: 4px;
+        white-space: nowrap;
+        &:hover {
+          filter: brightness(1.05);
+        }
+      }
+      &[aria-current="page"] {
+        font-weight: 600;
+        &::after {
+          content: "";
+          display: block;
+          height: 2px;
+          width: 40px;
+          background: $clr-accent;
+          border-radius: 2px;
+          margin-top: 4px;
+        }
+      }
+      &:hover {
+        color: #000;
+      }
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .nav-links {
+      overflow-x: auto;
+      gap: 12px;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+}
+
+.service-section {
+  .section-heading {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+    text-align: center;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+
+    .service-card {
+      background: $clr-card;
+      border-radius: $radius;
+      padding: 20px 18px;
+      position: relative;
+      box-shadow: $shadow;
+      display: flex;
+      gap: 16px;
+      transition: $transition;
+      overflow: hidden;
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 48px 120px rgba(31, 41, 55, 0.12);
+      }
+      .icon {
+        flex-shrink: 0;
+        .svg-wrapper {
+          width: 62px;
+          height: 62px;
+          display: inline-block;
+        }
+      }
+      .content {
+        flex: 1;
+        .card-title {
+          margin: 0 0 6px;
+          font-size: 1.05rem;
+          font-weight: 600;
+        }
+        .card-desc {
+          margin: 0;
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 24.5px;
+          color: #888888;
+        }
+      }
+    }
+  }
+}
+
+.callout {
+  background: transparent;
+  max-width: 960px;
+  margin: 0 auto;
+  padding-top: 20px;
+  p {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+    color: #000;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-banner {
+    .hero-inner {
+      .page-title {
+        font-size: 1.75rem;
+      }
+    }
+  }
+}

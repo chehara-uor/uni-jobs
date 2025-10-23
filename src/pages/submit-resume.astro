@@ -1,0 +1,14 @@
+---
+import "../styles/global.css";
+import Layout from "@layouts/Layout.astro";
+import ApplicationForm from '@components/ApplicationForm';
+---
+
+<Layout>
+    <section>
+        <div class="max-w-7xl mx-auto px-4 py-16 mt-[40px]">
+              <ApplicationForm client:only="react" />
+        </div>
+    </section>
+
+</Layout>

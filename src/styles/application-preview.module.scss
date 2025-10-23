@@ -1,0 +1,249 @@
+.application_preview {
+  color: #1f2937;
+
+  &__header {
+    background: linear-gradient(45deg, #0078c1, #10195d);
+    padding: 5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    border-radius: 8px;
+    margin-bottom: 16px;
+
+    .btn__header {
+      background: #ffffff;
+      border: none;
+      border-radius: 4px;
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      &:hover {
+        background-color: #f3f4f6;
+      }
+    }
+
+    .btn__header__title {
+      color: #fff;
+      font-size: 1.25rem;
+      margin: 0;
+    }
+
+    & .application_preview__meta {
+      position: absolute;
+      right: 2rem;
+      bottom: 0.75rem;
+      display: flex;
+      gap: 1.5rem;
+      color: #e5e7eb;
+
+      .meta_item {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        font-size: 0.85rem;
+        svg {
+          color: #e5e7eb;
+        }
+      }
+    }
+  }
+
+  &__profile {
+    display: flex;
+    align-items: center;
+    padding: 2.5rem;
+
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: #f3f4f6;
+      margin-right: 2rem;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .profile_info {
+      flex: 1;
+
+      .social_links {
+        display: flex;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+
+        .social_link {
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          display: inline-block;
+          background-size: 16px 16px;
+          background-position: center;
+          background-repeat: no-repeat;
+          &__twitter { background-image: url('https://img.icons8.com/?size=100&id=yoQabS8l0qpr&format=png&color=000000'); background-size: cover; }
+          &__facebook { background-image: url('https://img.icons8.com/?size=100&id=yGcWL8copNNQ&format=png&color=000000');  background-size: cover;}
+          &__linkedin { background-image: url('https://img.icons8.com/?size=100&id=xuvGCOXi8Wyg&format=png&color=000000');  background-size: cover;}
+          &__instagram { background-image: url('https://img.icons8.com/?size=100&id=Xy10Jcu1L2Su&format=png&color=000000');  background-size: cover;}
+          &__github { background-image: url('https://img.icons8.com/?size=100&id=nXgKLCSNhAWG&format=png&color=000000');  background-size: cover;}
+        }
+      }
+
+      .profile_name {
+        font-size: 1.5rem;
+        margin: 0 0 0.25rem;
+      }
+      .profile_email {
+        font-size: 0.95rem;
+        color: #6b7280;
+        margin: 0 0 1rem;
+      }
+      .btn__download {
+        background: transparent;
+        border: 1px solid #e81b39;
+        color: #e81b39;
+        padding: 0.5rem 1.25rem;
+        border-radius: 4px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: background 0.2s;
+        &:hover {
+          background: rgba(232, 27, 57, 0.1);
+        }
+      }
+    }
+  }
+
+  &__tabs {
+    ul {
+      display: flex;
+      margin: 0 2rem;
+      padding: 0;
+      list-style: none;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      overflow: hidden;
+
+      li {
+        flex: 1;
+        text-align: center;
+        padding: 0.75rem 0;
+        font-size: 0.95rem;
+        cursor: pointer;
+        color: #6b7280;
+        font-weight: 500;
+        transition: background 0.2s, color 0.2s;
+        span{
+            font-weight: 600;
+            color: #10195d;
+        }
+        &.active {
+          background: #ffffff;
+          color: #1f2937;
+          font-weight: 600;
+        }
+        &:not(.active):hover {
+          background: #f9fafb;
+        }
+      }
+    }
+  }
+
+  &__content {
+    display: flex;
+    gap: 2rem;
+    padding: 0.5rem;
+
+    .content_left {
+      flex: 2;
+     h3:first-child{
+        font-weight: 600;
+        color: #10195d;
+     }
+      .section {
+        margin-bottom: 2rem;
+
+        h3 {
+          font-size: 1.25rem;
+          margin-bottom: 0.75rem;
+        }
+
+        .item {
+          display: flex;
+          gap: 1rem;
+          margin-bottom: 1rem;
+
+          svg {
+            color: #e81b39;
+            flex-shrink: 0;
+          }
+
+          .item_period {
+            font-size: 0.85rem;
+            color: #6b7280;
+          }
+          .item_title {
+            font-size: 1rem;
+            font-weight: 600;
+          }
+          p {
+            margin: 0.25rem 0 0;
+            color: #4b5563;
+            font-size: 0.95rem;
+          }
+        }
+      }
+    }
+
+    .content_right {
+      flex: 1;
+
+      .overview_card {
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 1rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+
+        h3 {
+          font-size: 1.25rem;
+          margin-bottom: 1rem;
+        }
+
+        ul {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+
+          li {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+            margin-bottom: 1rem;
+
+            svg {
+              color: #e81b39;
+              flex-shrink: 0;
+            }
+
+            div {
+              strong {
+                display: block;
+                font-size: 0.9rem;
+                color: #374151;
+              }
+              span {
+                font-size: 0.95rem;
+                color: #6b7280;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

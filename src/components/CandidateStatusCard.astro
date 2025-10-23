@@ -1,0 +1,177 @@
+---
+import "../styles/candidate-status.css";
+
+interface Socials {
+  facebook?: string;
+  instagram?: string;
+  tiktok?: string;
+}
+
+export interface Props {
+  name: string;
+  applyDate: string | Date;
+  jobTitle: string;
+  status: string;
+  candidateId: string;
+  socials?: Socials;
+}
+
+const { name, applyDate, jobTitle, status, candidateId, socials = {} } = Astro.props as Props;
+
+const dateObj = new Date(applyDate);
+const formattedDate = isNaN(dateObj.valueOf())
+  ? String(applyDate)
+  : dateObj.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+
+// normalize status -> css modifier
+const normalize = (s: string) => s.toLowerCase().replace(/\s+/g, '_');
+const map: Record<string, string> = {
+  applied: 'applied',
+  interviewing: 'interviewing',
+  pending_review: 'pending_review',
+  shortlisted: 'shortlisted',
+  rejected: 'rejected',
+};
+const statusVariant = map[normalize(status)] ?? 'default';
+
+function safeHref(url?: string) { return url && url.trim().length ? url : null; }
+const links = {
+  facebook: safeHref(socials.facebook),
+  instagram: safeHref(socials.instagram),
+  tiktok: safeHref(socials.tiktok),
+};
+---
+
+<article class="cs-card relative w-full max-w-xl overflow-hidden rounded-2xl shadow-lg">
+  <div class="cs-accent"></div>
+
+  <div class="p-6 sm:p-8">
+    <header class="flex items-start justify-between gap-4">
+      <div>
+        <h1 class="cs-title text-xl font-semibold tracking-tight">
+          {name}
+        </h1>
+        <p class="cs-subtle mt-1 text-sm">
+          Applied on {formattedDate}
+        </p>
+      </div>
+
+      <span
+        class={`cs-badge is-${statusVariant} inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm font-medium`}
+        aria-live="polite"
+      >
+        <span class="cs-dot h-2 w-2 rounded-full"></span>
+        {status}
+      </span>
+    </header>
+
+    <dl class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <div class="cs-block rounded-lg p-4">
+        <dt class="cs-muted text-xs uppercase tracking-wide">Candidate ID</dt>
+        <dd class="mt-1 flex items-center gap-2">
+          <code id={"cid-" + candidateId} class="cs-code rounded-md px-2 py-1 text-sm">
+            {candidateId}
+          </code>
+          <button
+            class="cs-btn inline-flex items-center gap-1 rounded-md px-2 py-1 text-xs transition hover:scale-105 focus-visible:outline-none"
+            data-copy-target={"cid-" + candidateId}
+            type="button"
+            aria-label="Copy Candidate ID"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M8 7a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3h-6a3 3 0 0 1-3-3V7Z"/>
+              <path d="M3 10a3 3 0 0 1 3-3h1v2H6a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1v-1h2v1a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3v-7Z"/>
+            </svg>
+            <span data-copy-label>Copy</span>
+          </button>
+        </dd>
+      </div>
+
+      <div class="cs-block rounded-lg p-4">
+        <dt class="cs-muted text-xs uppercase tracking-wide">Apply For</dt>
+        <dd class="mt-1 cs-white">{jobTitle}</dd>
+      </div>
+    </dl>
+  </div>
+
+  <footer class="cs-footer flex items-center justify-between px-6 py-4">
+    <p class="cs-subtle text-sm">Connect</p>
+    <div class="cs-social flex items-center gap-3">
+      {
+        links.facebook
+          ? (
+            <a href={links.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook profile"
+               class="rounded-full p-2 transition hover:scale-110">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M22 12.06C22 6.52 17.52 2 12 2S2 6.52 2 12.06c0 5.01 3.66 9.16 8.44 9.94v-7.03H7.9v-2.9h2.54V9.41c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.23.2 2.23.2v2.45h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.9h-2.34V22c4.78-.78 8.44-4.93 8.44-9.94Z"/>
+              </svg>
+            </a>
+          )
+          : (
+            <span title="No Facebook" class="is-disabled rounded-full p-2">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M22 12.06C22 6.52 17.52 2 12 2S2 6.52 2 12.06c0 5.01 3.66 9.16 8.44 9.94v-7.03H7.9v-2.9h2.54V9.41c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.23.2 2.23.2v2.45h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.9h-2.34V22c4.78-.78 8.44-4.93 8.44-9.94Z"/>
+              </svg>
+            </span>
+          )
+      }
+
+      {
+        links.instagram
+          ? (
+            <a href={links.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram profile"
+               class="rounded-full p-2 transition hover:scale-110">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11Zm0 2a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Zm5.25-.75a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5Z"/>
+              </svg>
+            </a>
+          )
+          : (
+            <span title="No Instagram" class="is-disabled rounded-full p-2">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11Zm0 2a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Zm5.25-.75a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5Z"/>
+              </svg>
+            </span>
+          )
+      }
+
+      {
+        links.tiktok
+          ? (
+            <a href={links.tiktok} target="_blank" rel="noopener noreferrer" aria-label="TikTok profile"
+               class="rounded-full p-2 transition hover:scale-110">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M14.5 3h2.1c.25 1.52 1.37 3.1 3.2 3.7v2.12c-1.38-.03-2.69-.45-3.78-1.16v6.8a6.46 6.46 0 1 1-6.46-6.46c.49 0 .96.06 1.41.18V10a3.77 3.77 0 1 0 2.53 3.55V3Z"/>
+              </svg>
+            </a>
+          )
+          : (
+            <span title="No TikTok" class="is-disabled rounded-full p-2">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M14.5 3h2.1c.25 1.52 1.37 3.1 3.2 3.7v2.12c-1.38-.03-2.69-.45-3.78-1.16v6.8a6.46 6.46 0 1 1-6.46-6.46c.49 0 .96.06 1.41.18V10a3.77 3.77 0 1 0 2.53 3.55V3Z"/>
+              </svg>
+            </span>
+          )
+      }
+    </div>
+  </footer>
+</article>
+
+<!-- tiny inline copy-to-clipboard helper -->
+<script is:inline>
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-copy-target]');
+    if (!btn) return;
+    const id = btn.getAttribute('data-copy-target');
+    const el = document.getElementById(id);
+    if (!el) return;
+    const label = btn.querySelector('[data-copy-label]');
+    navigator.clipboard.writeText(el.textContent || '').then(() => {
+      if (label) {
+        const prev = label.textContent;
+        label.textContent = 'Copied!';
+        setTimeout(() => (label.textContent = prev), 1200);
+      }
+    });
+  }, { passive: true });
+</script>

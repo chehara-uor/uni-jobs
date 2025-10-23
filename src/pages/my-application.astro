@@ -1,0 +1,64 @@
+---
+import Layout from "@layouts/Layout.astro";
+import CandidateStatusCard from "@components/CandidateStatusCard.astro";
+import "../styles/global.css";
+export const prerender = false;
+
+const requestUrl = new URL(Astro.request.url);
+const idParam = requestUrl.searchParams.get('auth');
+console.log(idParam);
+
+
+let candidate = {
+  name: "",
+  applyDate: "",
+  jobTitle: "",
+  status: "",
+  candidateId: "",
+  socials: {
+    facebook: "https://www.facebook.com/lifeatlevein",
+    instagram: "https://www.instagram.com/lifeatlevein/?igsh=dDFxYnp0Znc3M3Uw#",
+    tiktok: "https://www.tiktok.com/@leveingroup?_t=8qEPlepx4cs&_r=1",
+  },
+};
+
+if (idParam) {
+  try {
+    const response = await fetch(
+      new URL("/api/status", Astro.url),
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: idParam }),
+      }
+    );
+
+    if (response.ok) {
+      const data = await response.json();
+      candidate = {
+        ...candidate,
+        name: data.name ?? "",
+        applyDate: data.applyDate ?? "",
+        jobTitle: data.jobTitle ?? "",
+        status: data.status ?? "",
+        candidateId: data.id ?? "",
+      };
+    } else {
+      console.error("Failed to fetch candidate data");
+    }
+  } catch (err) {
+    console.error("Error fetching candidate data:", err);
+  }
+} else {
+  console.log("No auth parameter provided in the URL");
+}
+---
+
+<Layout>
+    <section id="status" class="mt-[80px] py-16 flex w-full items-center">
+        <div class="max-w-7xl mx-auto px-4">
+            <CandidateStatusCard {...candidate} />
+        </div>
+    </section>
+    
+</Layout>

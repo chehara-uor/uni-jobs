@@ -1,0 +1,34 @@
+---
+import Header from '@components/Header';
+import Footer from '@components/Footer.astro';
+export interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="icon" href="/uj-32x32.png" sizes="32x32" />
+	<link rel="icon" href="/uj-192x192.png" sizes="192x192" />
+	<link rel="apple-touch-icon" href="/uj-180x180.png" />    
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Varela+Round&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <Header client:load/>
+    
+    <main>
+      <slot />
+    </main>
+
+    <Footer />
+  </body>
+</html>
