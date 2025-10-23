@@ -1,4 +1,7 @@
-
+@use "@styles/variables/typography" as *;
+@use "@styles/variables/colors" as *;
+@use "@styles/mixins/mixins" as *;
+@use "@styles/mixins/support" as *;
 
 form {
  
@@ -11,7 +14,7 @@ form {
   input:focus,
   select:focus,
   textarea:focus {
-    border-color: $clr-main; /* Tailwind pink-500 */
+    border-color: $clr-main;
     outline: none;
     box-shadow: 0 0 0 3px rgba(232, 27, 57, 0.3);
   }
